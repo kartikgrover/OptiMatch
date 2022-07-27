@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stable Matching</title>
+    <style>
+        
+
+        body {
+          margin: 0;
+          overflow-x: hidden;
+          background-color: #41B3A3;
+        }
+
+
+        h1 {
+            font-family: 'Mishafi Gold';
+            font-size: 40px;
+            font-weight: 150;
+            color: wheat;
+            padding-left: 20px;
+        }
+
+        form {
+            font-family: 'Mishafi Gold';
+            font-size: 20px;
+            font-weight: 150;
+            color: wheat;
+            padding-left: 20px;
+
+        }
+
+        p {
+            font-family: 'Helvetica Light', Helvetica, sans-serif;
+            font-size: 20px;
+            font-weight: 150;
+            color: wheat;
+            /*padding-left: 20px;*/
+        }
+
+        a {
+            padding: 7px 30px;
+            background: wheat;
+            color: white;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            font-family: 'Helvetica Light', Helvetica, sans-serif;
+            font-weight: 200;
+            font-size: 20px;
+        }
+
+        
+        .tooltip {
+            color: wheat;
+            font-family: 'Helvetica Light', Helvetica, sans-serif;
+            font-weight: 200;
+            font-size: 20px;
+            position: relative;
+            display: inline-block;
+            /*border-bottom: 1px dotted black;*/
+        }
+
+        .leftpane {
+            width: 70%;
+            height: 100%;
+            float: left;
+            /*background-color: rosybrown;*/
+            border-collapse: collapse;
+        }
+
+
+        .tooltip .tooltiptext {
+          visibility: hidden;
+          width: 400px;
+          background-color: black;
+          color: #fff;
+          text-align: left;
+          border-radius: 6px;
+          padding: 5px 0;
+
+          /* Position the tooltip */
+          position: absolute;
+          z-index: 1;
+        }
+
+        .tooltip:hover .tooltiptext {
+          visibility: visible;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <h1>Stable Matching</h1>
+    <form class="authForm" method="POST" action="/">
+        <div class="form-group">
+            <p>Enter the number of men and women</p>
+            <input class="form-control" type="number" name="number" placeholder="number" autofocus="">
+        </div>
+    </form>
+
+    <div class="leftpane">
+        <div style="top: 50px; margin: 15px;">
+            <a type="button" href="{{ url_for('start_match') }}" style="text-decoration:none;">
+                Run
+            </a>
+        </div>
+        <div style="top: 50px; margin: 30px;">
+            {% if data is none %}
+                <p>None (no matches found)</p>
+            {% else %}
+                <p>Pairs:</p>
+                {% for male in data %}
+                    <p>
+                        <div class="tooltip" style="display: inline">Man{{ male.id + 1 }}
+                            <span class="tooltiptext">{{ male.preferences }}</span>
+                        </div> ->
+                        <div class="tooltip" style="display: inline">Woman{{ data[male].id + 1 }}
+                            <span class="tooltiptext">{{ data[male].preferences  }}</span>
+                        </div>
+                    </p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

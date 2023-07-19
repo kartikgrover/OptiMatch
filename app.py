@@ -74,7 +74,9 @@ def start_match():  # put application's code here
         dataSet = IndividualMaker(int(number))
         #call function 
         dataSet.StableMatch()
-    return render_template("graph.html", data = output_dict )
+    return render_template("index.html", data = output_dict )
+
+    
 
 output_dict = {}
 if __name__ == '__main__':

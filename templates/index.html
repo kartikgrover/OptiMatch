@@ -95,17 +95,17 @@
 <body>
     <h1>Stable Matching</h1>
     <form class="authForm" method="POST" action="/">
+        
         <div class="form-group">
             <p>Enter the number of men and women</p>
             <input class="form-control" type="number" name="number" placeholder="number" autofocus="">
+            <input type="submit" value="submit" style="text-decoration:none;">
         </div>
     </form>
 
     <div class="leftpane">
         <div style="top: 50px; margin: 15px;">
-            <a type="button" href="{{ url_for('start_match') }}" style="text-decoration:none;">
-                Run
-            </a>
+            
         </div>
         <div style="top: 50px; margin: 30px;">
             {% if data is none %}

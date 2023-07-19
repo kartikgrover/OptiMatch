@@ -1,4 +1,4 @@
-# Gale-Shapley-Algorithm
+# OptiMatch
 Stable Match
 
 Takes an input from the user and creates a random dataset of n men and women

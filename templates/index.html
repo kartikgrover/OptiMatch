@@ -4,109 +4,121 @@
     <meta charset="UTF-8">
     <title>Stable Matching</title>
     <style>
-        
-
         body {
-          margin: 0;
-          overflow-x: hidden;
-          background-color: #41B3A3;
+            margin: 0;
+            overflow-x: hidden;
+            background-color: #41B3A3;
+            font-family: 'Arial', sans-serif;
+            color: wheat;
         }
 
-
         h1 {
-            font-family: 'Mishafi Gold';
+            font-family: 'Mishafi Gold', cursive;
             font-size: 40px;
-            font-weight: 150;
+            font-weight: 400;
             color: wheat;
             padding-left: 20px;
+            margin-top: 30px;
         }
 
         form {
-            font-family: 'Mishafi Gold';
             font-size: 20px;
-            font-weight: 150;
+            font-weight: 400;
             color: wheat;
             padding-left: 20px;
-
+            margin-top: 20px;
         }
 
         p {
-            font-family: 'Helvetica Light', Helvetica, sans-serif;
             font-size: 20px;
-            font-weight: 150;
+            font-weight: 400;
             color: wheat;
-            /*padding-left: 20px;*/
+            margin-top: 30px;
         }
 
-        a {
-            padding: 7px 30px;
-            background: wheat;
+        .authForm {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-right: 20px;
+        }
+
+        input[type="number"] {
+            padding: 8px;
+            font-size: 18px;
+            border: none;
+            border-radius: 6px;
+            background-color: #f5f5f5;
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 8px 20px;
+            font-size: 18px;
+            background-color: #6ca392;
             color: white;
             border: none;
             border-radius: 100px;
             cursor: pointer;
-            font-family: 'Helvetica Light', Helvetica, sans-serif;
-            font-weight: 200;
-            font-size: 20px;
         }
 
-        
         .tooltip {
-            color: wheat;
-            font-family: 'Helvetica Light', Helvetica, sans-serif;
-            font-weight: 200;
             font-size: 20px;
             position: relative;
             display: inline-block;
-            /*border-bottom: 1px dotted black;*/
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #444;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -100px;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
         }
 
         .leftpane {
             width: 70%;
             height: 100%;
             float: left;
-            /*background-color: rosybrown;*/
-            border-collapse: collapse;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
-
-        .tooltip .tooltiptext {
-          visibility: hidden;
-          width: 400px;
-          background-color: black;
-          color: #fff;
-          text-align: left;
-          border-radius: 6px;
-          padding: 5px 0;
-
-          /* Position the tooltip */
-          position: absolute;
-          z-index: 1;
+        #graph {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            height: 300px;
+            margin-top: 20px;
         }
-
-        .tooltip:hover .tooltiptext {
-          visibility: visible;
-        }
-
     </style>
-
 </head>
-
 <body>
     <h1>Stable Matching</h1>
     <form class="authForm" method="POST" action="/">
-        
         <div class="form-group">
             <p>Enter the number of men and women</p>
-            <input class="form-control" type="number" name="number" placeholder="number" autofocus="">
-            <input type="submit" value="submit" style="text-decoration:none;">
+            <input class="form-control" type="number" name="number" placeholder="Number" autofocus="">
         </div>
+        <input type="submit" value="Submit">
     </form>
 
     <div class="leftpane">
-        <div style="top: 50px; margin: 15px;">
-            
-        </div>
+        <div style="top: 50px; margin: 15px;"></div>
         <div style="top: 50px; margin: 30px;">
             {% if data is none %}
                 <p>None (no matches found)</p>
@@ -118,7 +130,7 @@
                             <span class="tooltiptext">{{ male.preferences }}</span>
                         </div> ->
                         <div class="tooltip" style="display: inline">Woman{{ data[male].id + 1 }}
-                            <span class="tooltiptext">{{ data[male].preferences  }}</span>
+                            <span class="tooltiptext">{{ data[male].preferences }}</span>
                         </div>
                     </p>
                 {% endfor %}

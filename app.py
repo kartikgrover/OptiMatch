@@ -60,7 +60,7 @@ class IndividualMaker:
 
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 @app.route('/',  methods=['GET','POST'])
 def start_match():  # put application's code here
